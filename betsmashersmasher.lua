@@ -20,14 +20,14 @@ local bs = {
 	[3] = false;
 };
 
-old = hookfunc(warn,function(...)
+old = hookfunction(warn,function(...)
 	if tostring(...):find("Auth") then 
 		whitelisted = true;
 	end 
 	return old(...)
 end)
 
-ln = hookfunc(string.len, function(s)
+ln = hookfunction(string.len, function(s)
 	if type(s) ~= "string" then 
 		s = "abc123"
 	end 
@@ -51,7 +51,7 @@ end)
 
 setreadonly(mt, true)
 
-o = hookfunc(islclosure, function(...)
+o = hookfunction(islclosure, function(...)
 	inc[5] = inc[5] + 1;
 	if inc[5] > 20 or whitelisted then 
 		return o(...)
