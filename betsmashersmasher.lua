@@ -60,9 +60,9 @@ o = hookfunc(islclosure, function(...)
 	end
 end)
 
-setreadonly(syn, false);
-syn_request = syn.request;
-syn.request = function(data)
+if syn and syn.request then setreadonly(syn, false); end
+syn_request = request or http_request or syn.request;
+(request or http_request or syn.request) = function(data)
 	bs[2] = true;
 	local ck = {};
 	setmetatable(ck, {__index = function(a,b) 
