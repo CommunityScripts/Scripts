@@ -1,7 +1,3 @@
--- # Created by Soldr & Applebee
--- # Cracked by Sor & Introvert
-
-
 local sp = false;
 local whitelisted = nil;
 local s1 = math.huge;
@@ -60,9 +56,9 @@ o = hookfunc(islclosure, function(...)
 	end
 end)
 
-if syn and syn.request then setreadonly(syn, false); end
-syn_request = request or http_request or syn.request;
-(request or http_request or syn.request) = function(data)
+setreadonly(syn, false);
+syn_request = syn.request;
+syn.request = function(data)
 	bs[2] = true;
 	local ck = {};
 	setmetatable(ck, {__index = function(a,b) 
